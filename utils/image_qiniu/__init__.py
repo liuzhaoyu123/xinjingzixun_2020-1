@@ -5,17 +5,17 @@ from qiniu import Auth, put_file, etag
 import qiniu.config
 
 # 需要填写你的 Access Key 和 Secret Key
-access_key = 'QNUcQDIywEgcP_zvaO0XfDZxwKwpbsbRVXN7BTPe'
-secret_key = 'y2PBSlCykoz3PU3du3lt7epERRTbVQQ1HrgW27-G'
+access_key = 'heT0_p9fPWbTMINhhxHbRL6XohWs7hI2PixaG1Vw'
+secret_key = '1do20REgJpHL_f586cKulLPwXf1y5q0-Fx0JrqyP'
 
 # 构建鉴权对象
 q = Auth(access_key, secret_key)
 
 # 要上传的空间
-bucket_name = 'xinjingzixun2020'
+bucket_name = 'liuzhaoyu'
 
 # url前缀
-url_prefix = "http://qhqapfhv2.hn-bkt.clouddn.com/"
+url_prefix = "http://qhpwv2fa1.hd-bkt.clouddn.com/"
 
 
 def upload_image_to_qiniu(localfile, key):
