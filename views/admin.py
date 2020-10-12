@@ -5,5 +5,5 @@ from . import admin_blu
 
 @admin_blu.route("/admin")
 def admin():
-    return "这是后台页面" \
-           ""
+    return render_template("admin/index.html")
+
