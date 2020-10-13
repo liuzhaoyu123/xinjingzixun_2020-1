@@ -36,6 +36,11 @@ def news_edit():
     paginate = db.session.query(News).paginate(page, 5, False)
     return render_template("admin/news_edit.html", paginate=paginate)
 
+
+@admin_blu.route("/admin/news_edit_detail.html")
+def news_edit_detail():
+    return render_template("admin/news_edit_detail.html")
+
 # 新闻分类管理
 @admin_blu.route("/news_type.html")
 def news_type():
@@ -81,7 +86,4 @@ def news_type_edit_or_add():
             "errmsg": "成功"
         }
 
-
-
         return jsonify(ret)
-
