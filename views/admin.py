@@ -1,7 +1,7 @@
 from flask import render_template, jsonify, request
 
 from models import db
-from models.index import Category
+from models.index import Category, News
 from . import admin_blu
 
 
@@ -32,8 +32,9 @@ def news_review():
 # 新闻版式编辑
 @admin_blu.route("/news_edit.html")
 def news_edit():
-    return render_template("admin/news_edit.html")
-
+    page = int(request.args.get("page", 1))
+    paginate = db.session.query(News).paginate(page, 5, False)
+    return render_template("admin/news_edit.html", paginate=paginate)
 
 # 新闻分类管理
 @admin_blu.route("/news_type.html")
