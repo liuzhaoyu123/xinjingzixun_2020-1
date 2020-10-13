@@ -1,4 +1,4 @@
-var currentCid = 0; // 当前分类 id
+var currentCid = 1; // 当前分类 id
 var cur_page = 1; // 当前页
 var total_page = 1;  // 总页数
 var data_querying = true;   // 是否正在向后台获取数据
@@ -40,7 +40,7 @@ $(function () {
                 // 将`是否正在向后端查询新闻数据`的标志设置为真
                 data_querying = true;
                 // 如果当前页面数还没到达总页数
-                if(cur_page < total_page) {
+                if (cur_page < total_page) {
                     // 向后端发送请求，查询下一页新闻数据
                     updateNewsData();
                 }
@@ -71,7 +71,7 @@ function updateNewsData() {
             cur_page += 1;
 
             // 显示数据
-            for (var i=0;i<resp.newsList.length;i++) {
+            for (var i = 0; i < resp.newsList.length; i++) {
                 var news = resp.newsList[i];
                 var content = '<li>';
                 content += '<a href="/detail/' + news.id + '" class="news_pic fl"><img src="' + news.index_image_url + '?imageView2/1/w/170/h/170"></a>';
