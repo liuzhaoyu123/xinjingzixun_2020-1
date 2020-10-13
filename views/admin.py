@@ -1,33 +1,52 @@
-from flask import render_template
+from flask import render_template, jsonify
 
+from models import db
+from models.index import Category
 from . import admin_blu
+
 
 # 后台首页
 @admin_blu.route("/admin")
 def admin():
     return render_template("admin/index.html")
 
+
 # 用户统计
 @admin_blu.route("/user_count.html")
 def user_count():
     return render_template("admin/user_count.html")
+
 
 # 用户列表
 @admin_blu.route("/user_list.html")
 def user_list():
     return render_template("admin/user_list.html")
 
+
 # 新闻审核
 @admin_blu.route("/news_review.html")
 def news_review():
     return render_template("admin/news_review.html")
+
 
 # 新闻版式编辑
 @admin_blu.route("/news_edit.html")
 def news_edit():
     return render_template("admin/news_edit.html")
 
+
 # 新闻分类管理
 @admin_blu.route("/news_type.html")
 def news_type():
-    return render_template("admin/news_type.html")
+    news_types = db.session.query(Category).filter(Category.id != 1).all()
+    return render_template("admin/news_type.html", news_types=news_types)
+
+
+@admin_blu.route("/admin/news_type", methods=["POST"])
+def news_type_edit():
+    ret = {
+        "errno": 0,
+        "errmsg": "成功"
+    }
+
+    return jsonify(ret)
