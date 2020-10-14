@@ -12,12 +12,12 @@ from . import admin_blu
 @admin_blu.route("/admin")
 def admin():
     user_id = session.get("user_id")
-    user = db.sesson.query(User).filter(User.id == user_id).first()
+    user = db.session.query(User).filter(User.id == user_id).first()
     if not user:
-        # 如果用户未登录 那么直接跳转到前台页面
+        # 如果用户未登录，那么直接跳转到前台首页
         return redirect("index_blu.index")
 
-    return render_template("admin/index.html", user=user)
+    return render_template("admin/index.html",user=user)
 
 
 @admin_blu.route("/admin/user_count.html")
