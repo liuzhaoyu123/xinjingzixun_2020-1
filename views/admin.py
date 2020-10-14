@@ -13,7 +13,9 @@ def admin():
 
 @admin_blu.route("/admin/user_count.html")
 def user_count():
-    return render_template("admin/user_count.html")
+    # 查询总数
+    total_count = db.session.query(User).count()
+    return render_template("admin/user_count.html", total_count=total_count)
 
 
 @admin_blu.route("/admin/user_list.html")
@@ -21,7 +23,6 @@ def user_list():
     page = int(request.args.get("page", 1))
     paginate = db.session.query(User).paginate(page, 5, False)
     return render_template("admin/user_list.html", paginate=paginate)
-
 
 
 @admin_blu.route("/admin/news_review.html")
