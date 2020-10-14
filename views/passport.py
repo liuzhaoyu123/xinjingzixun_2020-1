@@ -159,7 +159,7 @@ def smscode():
     session['sms_code'] = sms_code
 
     # 5. 通过短信发送这个6位数
-    # send_msg_to_phone(mobile, sms_code)  # 知道怎样发送短信就行了，我们可以通过print终端打印出验证码 以便测试。当代码开发完毕 放入到生产环境中时  再开启即可
+    # send_msg_to_phone(mobile, sms_code)
 
     ret = {
         "errno": 0,
