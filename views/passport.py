@@ -48,8 +48,8 @@ def register():
     # 将新用户的数据插入到数据库
     user = User()
     user.nick_name = mobile
-    # user.password_hash = password  # 未加密的方式，这样容易泄露用户名密码
-    user.password_hash = generate_password_hash(password)
+    user.password_hash = password  # 未加密的方式，这样容易泄露用户名密码
+    # user.password_hash = generate_password_hash(password)
     user.mobile = mobile
     try:
         db.session.add(user)
@@ -81,8 +81,8 @@ def login():
     password = request.json.get("password")
 
     # 2. 查询，如果存在表示登录成功，否则失败
-    user = db.session.query(User).filter(User.mobile == mobile).first()
-    if user and check_password_hash(user.password_hash, password):
+    user = db.session.query(User).filter(User.mobile == mobile, User.password_hash == password).first()
+    if user:  # and check_password_hash(user.password_hash, password):
         ret = {
             "errno": 0,
             "errmsg": "登录成功"
